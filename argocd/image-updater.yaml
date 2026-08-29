@@ -1,0 +1,48 @@
+apiVersion: argocd-image-updater.argoproj.io/v1alpha1
+kind: ImageUpdater
+metadata:
+  name: boutique-image-updater
+  namespace: argocd
+spec:
+  namespace: argocd
+  applicationRefs:
+    - namePattern: "boutique-*"
+
+      commonUpdateSettings:
+        updateStrategy: "newest-build"
+        allowTags: "regexp:^sha-[a-f0-9]{7,40}$"
+
+      images:
+        - alias: adservice
+          imageName: ghcr.io/bhargav-patel3/microservices-demo/adservice
+
+        - alias: cartservice
+          imageName: ghcr.io/bhargav-patel3/microservices-demo/cartservice
+
+        - alias: checkoutservice
+          imageName: ghcr.io/bhargav-patel3/microservices-demo/checkoutservice
+
+        - alias: currencyservice
+          imageName: ghcr.io/bhargav-patel3/microservices-demo/currencyservice
+
+        - alias: emailservice
+          imageName: ghcr.io/bhargav-patel3/microservices-demo/emailservice
+
+        - alias: frontend
+          imageName: ghcr.io/bhargav-patel3/microservices-demo/frontend
+
+        - alias: paymentservice
+          imageName: ghcr.io/bhargav-patel3/microservices-demo/paymentservice
+
+        - alias: productcatalogservice
+          imageName: ghcr.io/bhargav-patel3/microservices-demo/productcatalogservice
+
+        - alias: recommendationservice
+          imageName: ghcr.io/bhargav-patel3/microservices-demo/recommendationservice
+
+        - alias: shippingservice
+          imageName: ghcr.io/bhargav-patel3/microservices-demo/shippingservice
+
+        - alias: loadgenerator
+          imageName: ghcr.io/bhargav-patel3/microservices-demo/loadgenerator
+
